@@ -51,9 +51,9 @@ def load_data():
         
     # Asumsikan data okupansi ada dalam bentuk 0-1, kita ubah jadi persentase
     if 'occupied' in df.columns:
-        df['occupancy_rate'] = df['occupied'] * 100
+        df['occupancy_rate'] = df['occupied'] * 100 if df['occupied'].max() <= 1.0 else df['occupied']
     elif 'occupancy' in df.columns:
-        df['occupancy_rate'] = df['occupancy'] * 100
+        df['occupancy_rate'] = df['occupancy'] * 100 if df['occupancy'].max() <= 1.0 else df['occupancy']
     elif 'occupancy_rate' in df.columns and df['occupancy_rate'].max() <= 1.0:
         df['occupancy_rate'] = df['occupancy_rate'] * 100
         
